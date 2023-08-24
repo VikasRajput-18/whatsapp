@@ -4,8 +4,12 @@ const conversationSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      requried: [true, "Conversation name   is required."],
+      requried: [true, "Conversation name is required."],
       trim: true,
+    },
+    picture: {
+      type: String,
+      required: true,
     },
     isGroup: {
       type: Boolean,
