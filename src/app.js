@@ -8,7 +8,10 @@ import compression from "compression";
 import fileUpload from "express-fileupload";
 import cors from "cors";
 import createHttpError from "http-errors";
+import path from "path";
 import routes from "./routes/index.js";
+
+const __dirname = path.resolve();
 
 // dotenv config -> for use .env file
 dotenv.config();
@@ -48,8 +51,18 @@ app.use(
 //cors
 app.use(cors());
 
-// route -> /api/v1
+// app.use(express.static(path.join(__dirname, "/src/whatsapp_fe/build")));
 
+// app.get("*", function (_, res) {
+//   res.sendFile(
+//     path.join(__dirname, "/src/whatsapp_fe/build/index.html"),
+//     function (err) {
+//       res.status(500).send(err);
+//     }
+//   );
+// });
+
+// route -> /api/v1
 app.use("/api/v1", routes);
 
 app.use(async (req, res, next) => {

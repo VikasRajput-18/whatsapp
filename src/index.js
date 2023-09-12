@@ -3,6 +3,9 @@ import { Server } from "socket.io";
 import app from "./app.js";
 import logger from "./configs/logger.config.js";
 import SocketServer from "./utils/SocketServer.js";
+import path from "path";
+
+const __dirname = path.resolve();
 
 // env variables
 const PORT = process.env.PORT || 8000;
@@ -28,6 +31,8 @@ mongoose
   .then(() => {
     logger.info("Connection to the database");
   });
+
+// console.log(path.join(__dirname, "src/whatsapp_fe/build"));
 
 let server;
 server = app.listen(PORT, () => {

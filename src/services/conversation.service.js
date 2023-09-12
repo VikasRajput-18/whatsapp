@@ -6,7 +6,7 @@ export const doesConversationExist = async (
   receiver_id,
   isGroup
 ) => {
-  if (isGroup === false) {
+  if (isGroup === false || isGroup === undefined) {
     let convos = await ConversationModel.find({
       isGroup: false,
       $and: [

@@ -13,7 +13,8 @@ export const create_open_conversation = async (req, res, next) => {
     const sender_id = req.user.userId;
     const { receiver_id, isGroup } = req.body;
 
-    if (isGroup == false) {
+    console.log("receiver_id , group", receiver_id, isGroup);
+    if (isGroup == false || isGroup == undefined) {
       if (!receiver_id) {
         logger.error("Please provide a receiver id to chat with him/her.");
         throw createHttpError.BadGateway("Oops... Somehting went wrong");
