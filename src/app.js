@@ -51,6 +51,19 @@ app.use(
 //cors
 app.use(cors());
 
+app.use((req, res, next) => {
+    res.setHeader('Origin-Agent-Cluster', 'force-origin-keyed');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    // intercept OPTIONS method
+    if (req.method === 'OPTIONS') {
+        res.send(200);
+    } else {
+        next();
+    }
+});
+
 // app.use(express.static(path.join(__dirname, "/src/whatsapp_fe/build")));
 
 // app.get("*", function (_, res) {
